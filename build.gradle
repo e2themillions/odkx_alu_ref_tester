@@ -1,11 +1,19 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
+    def githubProperties = new Properties()
+    githubProperties.load(new FileInputStream(rootProject.file("github.properties")))
+
+    var GHUser = githubProperties['gpr.usr'] ?: System.getenv("USERNAME")
+    var Pat = githubProperties['gpr.key'] ?: System.getenv("TOKEN")
+    var GHRepo = githubProperties['gpr.repo']
+    var repoUrl = 'https://maven.pkg.github.com/' + GHUser + '/' + GHRepo
+
     repositories {
         maven {
-            url = ""
+            url = repoUrl
             credentials {
-                username = githubProperties['gpr.usr'] ?: System.getenv("USERNAME")
-                password = githubProperties['gpr.key'] ?: System.getenv("TOKEN")
+                username = GHUser
+                password = Pat
             }
         }
         google()
@@ -17,6 +25,7 @@ buildscript {
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
+
 }
 
 task clean(type: Delete) {

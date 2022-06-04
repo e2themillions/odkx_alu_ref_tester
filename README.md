@@ -6,7 +6,7 @@ To be able to restore packages from GitHub package repo, it is necessary to auth
   - -> Developer Settings
   - -> Personal Access Tokens
   - -> Generate new token  (enable "read:packages")
-1. Write your username into a file called ```github.properties``` in the root of your project. (make sure to include that file in .gitignore to avoid exposing your PAT)
+1. Write your username, the personal access token and the name of the repo into a file called ```github.properties``` in the root of your project. (make sure to include that file in .gitignore to avoid exposing your PAT)
 >gpr.usr=GITHUB_USERID
 >gpr.key=PERSONAL_ACCESS_TOKEN
-
+>gpr.repo=NAME_OF_THE_REPO
